@@ -20,11 +20,14 @@ option=$1
 
 # Create the test directory if it doesn't exist
 mkdir -p test
+mkdir -p build
 
 # Determine the exercise name and CSV file path
 case $option in
   1)
     echo "Generating report..."
+    make report
+    ./build/report
     exit 0
     ;;
   2)
