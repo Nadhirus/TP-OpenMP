@@ -32,13 +32,13 @@ int main(int argc, char *argv[])
   // initialisation de tableau de resultats
   resultat = (float *)malloc(sizeof(float) * tailleTableau);
 
-//   start = omp_get_wtime();
-// #pragma omp parallel num_threads(nombreThreads)
-//   {
-//     fonction_sequentielle_mult(tableau, resultat, tailleTableau);
-//   }
-//   finish = omp_get_wtime();
-//   // printf("Le temps d'execution %f \n", (finish - start));
+  //   start = omp_get_wtime();
+  // #pragma omp parallel num_threads(nombreThreads)
+  //   {
+  //     fonction_sequentielle_mult(tableau, resultat, tailleTableau);
+  //   }
+  //   finish = omp_get_wtime();
+  //   // printf("Le temps d'execution %f \n", (finish - start));
 
   start = omp_get_wtime();
 #pragma omp parallel num_threads(nombreThreads)

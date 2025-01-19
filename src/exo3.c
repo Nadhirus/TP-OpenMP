@@ -48,7 +48,7 @@ void fonction_sequentielle_sum(float *tableau, double *resultat, int tailleTable
 
   for (int i = 0; i < tailleTableau; i++)
   {
-    #pragma omp atomic 
+#pragma omp atomic
     *resultat += tableau[i];
   }
 }
