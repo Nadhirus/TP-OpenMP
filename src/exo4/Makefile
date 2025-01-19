@@ -3,7 +3,7 @@ CCFLAGS=-Wall -std=c99 -fopenmp
 LDFLAGS=-lm -fopenmp
 SOURCES=$(wildcard *.c)
 OBJECTS=$(SOURCES:.c=.o)
-TARGET=ShiTomasi
+TARGET=../../build/ShiTomasi
 
 all: debug
 
@@ -17,6 +17,7 @@ benchmode: CCFLAGS += -O2 -DBENCHMARKMODE
 benchmode: $(TARGET)
 
 $(TARGET): $(OBJECTS) $(CXXOBJECTS)
+	mkdir -p ../../build
 	$(CC) -o $@ $^ $(LDFLAGS)
 
 %.o: %.c %.h
