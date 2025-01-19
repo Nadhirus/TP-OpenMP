@@ -78,33 +78,34 @@ if [ "$option" == "2" ]; then
     done
   done
   python3 plot.py 2
+  
 elif [ "$option" == "3" ]; then
   for taille in "${array_sizes[@]}"; do
     for threads in $thread_counts; do
       echo "Running exercise 3 with array size: $taille and threads: $threads"
       run_and_log "exo3" "$taille" "$threads"
     done
-    # Static scheduling
-    for threads in $thread_counts; do
-      echo "Running exercise 3 with array size: $taille and threads: $threads using static scheduling"
-      for i in $moyenne; do
-        run_and_log "exo3_static" "$taille" "$threads"
-      done
-    done
-    # Dynamic scheduling
-    for threads in $thread_counts; do
-      echo "Running exercise 3 with array size: $taille and threads: $threads using dynamic scheduling"
-      for i in $moyenne; do
-        run_and_log "exo3_dynamic" "$taille" "$threads"
-      done
-    done
-    # Guided scheduling
-    for threads in $thread_counts; do
-      echo "Running exercise 3 with array size: $taille and threads: $threads using guided scheduling"
-      for i in $moyenne; do
-        run_and_log "exo3_guided" "$taille" "$threads"
-      done
-    done
+    # # Static scheduling
+    # for threads in $thread_counts; do
+    #   echo "Running exercise 3 with array size: $taille and threads: $threads using static scheduling"
+    #   for i in $moyenne; do
+    #     run_and_log "exo3_static" "$taille" "$threads"
+    #   done
+    # done
+    # # Dynamic scheduling
+    # for threads in $thread_counts; do
+    #   echo "Running exercise 3 with array size: $taille and threads: $threads using dynamic scheduling"
+    #   for i in $moyenne; do
+    #     run_and_log "exo3_dynamic" "$taille" "$threads"
+    #   done
+    # done
+    # # Guided scheduling
+    # for threads in $thread_counts; do
+    #   echo "Running exercise 3 with array size: $taille and threads: $threads using guided scheduling"
+    #   for i in $moyenne; do
+    #     run_and_log "exo3_guided" "$taille" "$threads"
+    #   done
+    # done
   done
   python3 plot.py 3
 elif [ "$option" == "4" ]; then

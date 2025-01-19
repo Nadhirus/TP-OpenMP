@@ -32,7 +32,9 @@ int main(int argc, char *argv[])
   }
 
   start = omp_get_wtime();
-#pragma omp parallel num_threads(nombreThreads)
+
+  // Parallel section using reduction for resultat
+#pragma omp parallel num_threads(nombreThreads) reduction(+:resultat)
   {
     fonction_sequentielle_sum(tableau, &resultat, tailleTableau);
   }
@@ -45,10 +47,9 @@ int main(int argc, char *argv[])
 void fonction_sequentielle_sum(float *tableau, double *resultat, int tailleTableau)
 {
   // #pragma omp for schedule (ARG_SCHEDULE)
-
   for (int i = 0; i < tailleTableau; i++)
   {
-#pragma omp atomic
+// #pragma omp atomic
     *resultat += tableau[i];
   }
 }
