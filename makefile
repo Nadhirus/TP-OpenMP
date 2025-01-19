@@ -22,4 +22,5 @@ clean:
 	rm -f build/report build/exo2 build/exo3_static build/exo3 build/exo3_dynamic build/exo3_guided
 	rm -f **/*.csv
 	rm -f **/*.png
+	rm -f **/*.pgm
 	$(MAKE) -C src/exo4 clean

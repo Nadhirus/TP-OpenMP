@@ -24,35 +24,35 @@ mkdir -p build
 
 # Determine the exercise name and CSV file path
 case $option in
-  1)
-    echo "Generating report..."
-    make report
-    ./build/report
-    exit 0
-    ;;
-  2)
-    exercise="exo2"
-    make exo2
-    ;;
-  3)
-    exercise="exo3"
-    make exo3
-    ;;
-  4)
-    exercise="exo4"
-    make exo4
-    ;;
-  *)
-    echo "Invalid option. Valid options are 1, 2, 3, or 4."
-    exit 1
-    ;;
+1)
+  echo "Generating report..."
+  make report
+  ./build/report
+  exit 0
+  ;;
+2)
+  exercise="exo2"
+  make exo2
+  ;;
+3)
+  exercise="exo3"
+  make exo3
+  ;;
+4)
+  exercise="exo4"
+  make exo4
+  ;;
+*)
+  echo "Invalid option. Valid options are 1, 2, 3, or 4."
+  exit 1
+  ;;
 esac
 
 csv_file="test/${exercise}.csv"
 
 # Initialize CSV file with headers if not exists
 if [ ! -f "$csv_file" ]; then
-  echo "Exercise,Array Size,Threads,Execution Time" > "$csv_file"
+  echo "Exercise,Array Size,Threads,Execution Time" >"$csv_file"
 fi
 
 # Function to run and log the results
@@ -66,7 +66,7 @@ run_and_log() {
   execution_time=$(echo "$output" | grep -oP "(?<=Le temps d'execution de log )[\d.]+")
 
   # Append to CSV
-  echo "$exercise,$array_size,$threads,$execution_time" >> "$csv_file"
+  echo "$exercise,$array_size,$threads,$execution_time" >>"$csv_file"
 }
 
 # Execute based on the selected option
@@ -77,6 +77,7 @@ if [ "$option" == "2" ]; then
       run_and_log "exo2" "$taille" "$threads"
     done
   done
+  python3 plot.py 2
 elif [ "$option" == "3" ]; then
   for taille in "${array_sizes[@]}"; do
     for threads in $thread_counts; do
@@ -105,11 +106,7 @@ elif [ "$option" == "3" ]; then
       done
     done
   done
+  python3 plot.py 3
 elif [ "$option" == "4" ]; then
-  for taille in "${array_sizes[@]}"; do
-    for threads in $thread_counts; do
-      echo "Running exercise 4 with array size: $taille and threads: $threads"
-      run_and_log "exo4" "$taille" "$threads"
-    done
-  done
+  ./build/ShiTomasi src/exo4/input_images/img_1.jpg 4 src/exo4/output_images
 fi
